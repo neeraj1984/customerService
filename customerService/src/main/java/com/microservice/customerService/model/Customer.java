@@ -2,6 +2,10 @@ package com.microservice.customerService.model;
 
 import java.time.LocalDate;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 public class Customer {
 	
@@ -58,5 +62,6 @@ public class Customer {
 	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
 	}
+	
     
 }

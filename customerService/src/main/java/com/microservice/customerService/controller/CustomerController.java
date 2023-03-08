@@ -2,18 +2,22 @@ package com.microservice.customerService.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.microservice.customerService.model.Customer;
 
@@ -36,7 +40,7 @@ public class CustomerController {
 	final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
 	// @GetMapping
-	@CrossOrigin(origins = "http://localhost:3000")
+	//@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping("/all")
 	public List<Customer> customerList() {
 		logger.info("customerList() started....");
@@ -122,6 +126,24 @@ public class CustomerController {
 		System.out.println("Response Received as " + response);
 
 		return "address Details " + response;
+	}
+	
+	/*
+	 * Accessing Address API using WebClient
+	 */
+	@RequestMapping(value = "/getCustomerAddressDB", method = RequestMethod.GET)
+	public String getAddresswithWebClient() {
+		WebClient client1 = WebClient.create();
+		WebClient client2 = WebClient.create("http://localhost:8080");
+		/*
+		WebClient client3 = WebClient.builder()
+				  .baseUrl("http://localhost:8080")
+				  .defaultCookie("cookieKey", "cookieValue")
+				  .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE) 
+				  .defaultUriVariables(Collections.singletonMap("url", "http://localhost:8080"))
+				  .build();
+		*/
+		return "accessed the application using WebClient";
 	}
 
 }
