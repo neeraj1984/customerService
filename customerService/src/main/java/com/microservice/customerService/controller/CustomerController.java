@@ -131,7 +131,7 @@ public class CustomerController {
 	/*
 	 * Accessing Address API using WebClient
 	 */
-	@RequestMapping(value = "/getCustomerAddressDB", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCustomerAddressDBWebClient", method = RequestMethod.GET)
 	public String getAddresswithWebClient() {
 		WebClient client1 = WebClient.create();
 		WebClient client2 = WebClient.create("http://localhost:8080");
