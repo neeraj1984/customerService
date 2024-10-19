@@ -1,0 +1,11 @@
+app:
+  version: 1
+  isMiroserivce: true
+microservice:
+ app:
+  list:
+    API Gateway
+    Discovery Service
+    Customer Service
+    Address Service
+    Authentication Service
